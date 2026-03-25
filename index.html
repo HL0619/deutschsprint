@@ -6,7 +6,6 @@
 <meta name="theme-color" content="#0D9488"/>
 <meta name="mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
-<meta name="apple-mobile-web-app-status-bar-style" content="default"/>
 <title>DeutschSprint</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -19,20 +18,31 @@ button{font-family:inherit;cursor:pointer}
 .progress-bar{background:#E5E7EB;border-radius:99px;height:8px;width:100%;overflow:hidden}
 .progress-fill{height:100%;border-radius:99px;transition:width .4s}
 .card{background:#fff;border:1px solid #E5E7EB;border-radius:18px;padding:16px;margin-bottom:12px}
+
+/* SPEAK BUTTON */
+.speak-btn{background:none;border:none;font-size:20px;padding:4px 8px;border-radius:8px;transition:transform .15s;display:inline-flex;align-items:center}
+.speak-btn:active{transform:scale(.85)}
+.speak-btn.speaking{animation:pulse .6s infinite alternate}
+@keyframes pulse{from{opacity:1}to{opacity:.4}}
+
 /* NAV */
-#nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #E5E7EB;display:flex;justify-content:space-around;padding:10px 0 16px;z-index:100;max-width:480px;margin:0 auto}
+#nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #E5E7EB;display:flex;justify-content:space-around;padding:10px 0 16px;z-index:100}
 .nav-btn{background:none;border:none;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10px;color:#9CA3AF;padding:4px 12px}
 .nav-btn.active{color:#0D9488}
 .nav-btn span.icon{font-size:22px}
+
 /* LANDING */
 #landing{background:linear-gradient(135deg,#0D9488 0%,#7C3AED 100%);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:32px 24px;max-width:100%}
-#landing h1{color:#fff;font-size:38px;font-weight:900;letter-spacing:-1px;margin:12px 0 8px}
+#landing h1{color:#fff;font-size:38px;font-weight:900;letter-spacing:-1px;margin:12px 0 6px}
+.by-badge{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.4);border-radius:99px;padding:5px 18px;margin-bottom:16px}
+.by-badge span{color:#fff;font-size:13px;font-weight:700;letter-spacing:1.5px}
 #landing p.sub{color:rgba(255,255,255,.85);font-size:17px;max-width:300px;margin:0 auto 8px}
 #landing p.desc{color:rgba(255,255,255,.7);font-size:13px;max-width:280px;margin:0 auto 36px}
 #start-btn{background:#fff;color:#7C3AED;font-weight:800;font-size:17px;border:none;border-radius:16px;padding:16px 40px;box-shadow:0 8px 30px rgba(0,0,0,.15)}
 .landing-icons{display:flex;gap:28px;margin-top:36px}
 .landing-icons div{color:rgba(255,255,255,.85);font-size:12px;text-align:center}
 .landing-icons div span{display:block;font-size:26px;margin-bottom:4px}
+
 /* DASHBOARD */
 .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
 .avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#0D9488,#7C3AED);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:15px}
@@ -52,71 +62,64 @@ button{font-family:inherit;cursor:pointer}
 .quick-btn{border:none;border-radius:16px;padding:16px;text-align:left}
 .quick-btn .qicon{font-size:26px;margin-bottom:6px}
 .quick-btn .qlabel{font-weight:700;font-size:14px}
-.module-row{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.module-row{display:flex;align-items:center;gap:12px}
 .mod-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
 .mod-info{flex:1}
 .mod-title{font-weight:700;color:#1F2937;margin-bottom:3px;font-size:15px}
 .mod-sub{font-size:11px;color:#9CA3AF;margin-top:3px}
-/* MODULES */
-.mod-card{display:flex;align-items:center;gap:12px;cursor:pointer}
+
 /* LESSON */
 .step-dots{display:flex;gap:6px;margin-bottom:22px}
 .step-dot{flex:1;height:4px;border-radius:99px;transition:background .3s}
-.phrase-box{border-radius:18px;padding:24px;text-align:center;margin:16px 0}
-.phrase-de{font-size:20px;font-weight:800;margin-bottom:6px}
-.phrase-en{font-size:15px;opacity:.7}
 .vocab-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #F3F4F6}
 .vocab-de{font-weight:700;color:#1F2937}
 .vocab-en{color:#9CA3AF;font-size:14px}
-.complete-box{text-align:center;padding:20px 0}
-.xp-badges{display:flex;justify-content:center;gap:18px;margin:20px 0}
-.xp-badge{border-radius:14px;padding:14px 20px;text-align:center}
-.xp-val{font-size:20px;font-weight:800}
 .next-btn{background:#0D9488;color:#fff;font-weight:700;font-size:15px;border:none;border-radius:14px;padding:14px;width:100%;margin-top:20px}
+
 /* FLASHCARDS */
-.flashcard{border-radius:24px;padding:48px 32px;text-align:center;cursor:pointer;min-height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:20px 0;transition:background .3s}
-.fc-de{font-size:24px;font-weight:800;color:#fff;margin-bottom:8px}
-.fc-hint{color:rgba(255,255,255,.7);font-size:14px}
-.fc-en{font-size:20px;font-weight:800;margin-bottom:10px}
-.fc-ex{font-style:italic;font-size:14px;color:#4B5563}
+.flashcard{border-radius:24px;padding:40px 28px;text-align:center;cursor:pointer;min-height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:20px 0;transition:background .3s}
 .fc-btns{display:flex;gap:12px}
 .fc-btn{flex:1;border:none;border-radius:14px;padding:14px;font-weight:700;font-size:14px}
+
 /* DIALOGUE */
 .chat-line{display:flex;gap:10px;margin-bottom:14px;align-items:flex-start}
 .chat-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
 .chat-bubble{flex:1;border-radius:14px;padding:10px 14px}
 .chat-name{font-size:11px;color:#9CA3AF;margin-bottom:3px}
-.chat-de{font-weight:700;color:#1F2937;margin-bottom:2px;font-size:14px}
+.chat-de{font-weight:700;color:#1F2937;margin-bottom:4px;font-size:14px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
 .chat-en{color:#6B7280;font-size:13px;font-style:italic}
-.tip-box{border-radius:14px;padding:14px;margin-top:16px}
+
 /* GRAMMAR */
 .grammar-card{border:1px solid #E5E7EB;border-radius:18px;margin-bottom:14px;overflow:hidden}
 .grammar-header{display:flex;justify-content:space-between;align-items:center;padding:16px;cursor:pointer}
 .grammar-body{padding:0 16px 16px}
-.grammar-ex{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #F3F4F6}
+.grammar-ex{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #F3F4F6}
 .grammar-tip{border-radius:12px;padding:12px;margin-top:12px;font-size:14px}
+
 /* QUIZ */
 .quiz-q{font-size:18px;font-weight:700;color:#1F2937;margin:16px 0 20px;line-height:1.5}
 .quiz-opt{width:100%;border:2px solid #E5E7EB;border-radius:14px;padding:14px 16px;text-align:left;background:#fff;font-size:15px;margin-bottom:10px;color:#1F2937;transition:border-color .2s,background .2s}
 .quiz-opt.correct{border-color:#0D9488;background:#CCFBF1;color:#0D9488}
 .quiz-opt.wrong{border-color:#F43F5E;background:#FFE4E6;color:#F43F5E}
-.quiz-result{text-align:center;padding:20px 0}
+
 /* PROGRESS */
-.prog-ring-wrap{display:flex;justify-content:center;margin:20px 0}
 .stat-row{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid #F3F4F6}
 .stat-label{color:#4B5563;font-size:15px}
 .stat-val{font-weight:700;font-size:15px}
+
+/* TTS TOAST */
+#tts-toast{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#1F2937;color:#fff;padding:8px 18px;border-radius:99px;font-size:13px;font-weight:600;opacity:0;transition:opacity .3s;z-index:999;pointer-events:none}
 </style>
 </head>
 <body>
+
+<div id="tts-toast">🔊 Speaking...</div>
 
 <!-- LANDING -->
 <div id="landing">
   <div style="font-size:60px">🇩🇪</div>
   <h1>DeutschSprint</h1>
-  <div style="display:inline-block;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.4);border-radius:99px;padding:5px 18px;margin-bottom:18px">
-    <span style="color:#fff;font-size:13px;font-weight:700;letter-spacing:1.5px">✦ Created by Hugh</span>
-  </div>
+  <div class="by-badge"><span>✦ Created by Hugh</span></div>
   <p class="sub">German for real life in Germany.</p>
   <p class="desc">Practical daily German for adult expats — from ordering coffee to booking a doctor.</p>
   <button id="start-btn" onclick="go('dashboard')">Start Learning →</button>
@@ -142,7 +145,7 @@ button{font-family:inherit;cursor:pointer}
       <div style="font-size:13px;color:#9CA3AF">Welcome back 👋</div>
       <div style="font-size:21px;font-weight:800">DeutschSprint</div>
     </div>
-    <div class="avatar">A</div>
+    <div class="avatar">H</div>
   </div>
   <div class="stat-grid">
     <div class="stat-card" style="background:#FEF3C7"><div style="font-size:22px">🔥</div><div class="val" style="color:#F59E0B">7</div><div class="lbl">Day Streak</div></div>
@@ -193,16 +196,20 @@ button{font-family:inherit;cursor:pointer}
   </div>
   <div class="progress-bar"><div class="progress-fill" id="fc-progress" style="background:#F59E0B;width:16.6%"></div></div>
   <div class="flashcard" id="flashcard" style="background:linear-gradient(135deg,#F59E0B,#EF4444)" onclick="flipCard()">
-    <div class="fc-de" id="fc-de">der Kaffee</div>
-    <div class="fc-hint" id="fc-hint">Tap to reveal</div>
-    <div class="fc-en" id="fc-en" style="display:none"></div>
-    <div class="fc-ex" id="fc-ex" style="display:none"></div>
+    <div style="font-size:26px;font-weight:800;color:#fff;margin-bottom:6px" id="fc-de">der Kaffee</div>
+    <div style="color:rgba(255,255,255,.7);font-size:14px" id="fc-hint">Tap to reveal</div>
+    <div style="font-size:20px;font-weight:800;color:#F59E0B;margin-bottom:6px;display:none" id="fc-en"></div>
+    <div style="font-style:italic;font-size:14px;color:#4B5563;display:none" id="fc-ex"></div>
+  </div>
+  <!-- Speak button below card -->
+  <div style="text-align:center;margin-bottom:16px">
+    <button class="speak-btn" id="fc-speak" onclick="event.stopPropagation();speakFC()" title="Hear pronunciation">🔊 <span style="font-size:13px;font-weight:700;color:#F59E0B">Hear German</span></button>
   </div>
   <div class="fc-btns">
     <button class="fc-btn" id="fc-prev" style="background:#F3F4F6;color:#4B5563" onclick="fcMove(-1)">← Prev</button>
     <button class="fc-btn" id="fc-next" style="background:#F59E0B;color:#fff" onclick="fcMove(1)">Next →</button>
   </div>
-  <p style="text-align:center;color:#9CA3AF;font-size:13px;margin-top:14px">Tap card to flip</p>
+  <p style="text-align:center;color:#9CA3AF;font-size:13px;margin-top:14px">Tap card to flip · 🔊 to hear German</p>
 </div>
 
 <!-- DIALOGUE -->
@@ -210,12 +217,12 @@ button{font-family:inherit;cursor:pointer}
   <button class="back-btn" onclick="go('dashboard')">← Back</button>
   <span class="badge" style="background:#CCFBF1;color:#0D9488">Dialogue Practice</span>
   <h2 style="font-weight:800;font-size:19px;margin:10px 0 4px">Ordering Coffee ☕</h2>
-  <p style="color:#9CA3AF;font-size:14px;margin-bottom:18px">Read and practise each line out loud!</p>
+  <p style="color:#9CA3AF;font-size:14px;margin-bottom:18px">Tap 🔊 to hear each line in German!</p>
   <div id="dialogue-lines"></div>
   <button id="dlg-btn" style="background:#CCFBF1;color:#0D9488;font-weight:700;border:none;border-radius:14px;padding:12px;width:100%;margin-bottom:14px" onclick="dlgNext()">Show next line →</button>
-  <div class="tip-box" style="background:#FEF3C7">
+  <div style="background:#FEF3C7;border-radius:14px;padding:14px">
     <div style="font-weight:700;color:#F59E0B;margin-bottom:4px">💡 Practice tip</div>
-    <div style="color:#4B5563;font-size:14px;line-height:1.6">Say each German line out loud. Consistency matters more than perfect pronunciation!</div>
+    <div style="color:#4B5563;font-size:14px;line-height:1.6">Tap 🔊 then repeat each line out loud. Consistency beats perfection!</div>
   </div>
 </div>
 
@@ -224,46 +231,37 @@ button{font-family:inherit;cursor:pointer}
   <button class="back-btn" onclick="go('dashboard')">← Back</button>
   <span class="badge" style="background:#EDE9FE;color:#7C3AED">Grammar Quick Guide</span>
   <h2 style="font-weight:800;font-size:19px;margin:10px 0 4px">Grammar Essentials</h2>
-  <p style="color:#9CA3AF;font-size:14px;margin-bottom:18px">Short, practical notes — no textbook theory.</p>
+  <p style="color:#9CA3AF;font-size:14px;margin-bottom:18px">Tap 🔊 on any example to hear it spoken.</p>
 
   <div class="grammar-card">
-    <div class="grammar-header" onclick="toggleGrammar(0)">
-      <div style="font-weight:700">German Articles: der, die, das</div>
-      <span id="g0-arrow">▼</span>
-    </div>
+    <div class="grammar-header" onclick="toggleGrammar(0)"><div style="font-weight:700">German Articles: der, die, das</div><span id="g0-arrow">▼</span></div>
     <div class="grammar-body" id="g0-body" style="display:none">
-      <p style="color:#4B5563;font-size:14px;line-height:1.6;margin-bottom:12px">Every German noun has a gender — masculine (der), feminine (die), or neuter (das). Learn the article with every word.</p>
-      <div class="grammar-ex"><span style="font-weight:700">der Kaffee</span><span style="color:#9CA3AF;font-size:13px">coffee (masculine)</span></div>
-      <div class="grammar-ex"><span style="font-weight:700">die Apotheke</span><span style="color:#9CA3AF;font-size:13px">pharmacy (feminine)</span></div>
-      <div class="grammar-ex"><span style="font-weight:700">das Brötchen</span><span style="color:#9CA3AF;font-size:13px">bread roll (neuter)</span></div>
-      <div class="grammar-tip" style="background:#EDE9FE;color:#7C3AED;margin-top:12px;font-size:14px">💡 Always learn nouns WITH their article. Say <strong>der Kaffee</strong>, not just <em>Kaffee</em>.</div>
+      <p style="color:#4B5563;font-size:14px;line-height:1.6;margin-bottom:12px">Every German noun has a gender — masculine (der), feminine (die), or neuter (das). Always learn the article with the word.</p>
+      <div class="grammar-ex"><span style="font-weight:700">der Kaffee</span><div style="display:flex;align-items:center;gap:8px"><span style="color:#9CA3AF;font-size:13px">coffee</span><button class="speak-btn" onclick="speak('der Kaffee')">🔊</button></div></div>
+      <div class="grammar-ex"><span style="font-weight:700">die Apotheke</span><div style="display:flex;align-items:center;gap:8px"><span style="color:#9CA3AF;font-size:13px">pharmacy</span><button class="speak-btn" onclick="speak('die Apotheke')">🔊</button></div></div>
+      <div class="grammar-ex"><span style="font-weight:700">das Brötchen</span><div style="display:flex;align-items:center;gap:8px"><span style="color:#9CA3AF;font-size:13px">bread roll</span><button class="speak-btn" onclick="speak('das Brötchen')">🔊</button></div></div>
+      <div class="grammar-tip" style="background:#EDE9FE;color:#7C3AED">💡 Always say <strong>der Kaffee</strong>, not just <em>Kaffee</em>.</div>
     </div>
   </div>
 
   <div class="grammar-card">
-    <div class="grammar-header" onclick="toggleGrammar(1)">
-      <div style="font-weight:700">Polite Requests: ich hätte gerne</div>
-      <span id="g1-arrow">▼</span>
-    </div>
+    <div class="grammar-header" onclick="toggleGrammar(1)"><div style="font-weight:700">Polite Requests: ich hätte gerne</div><span id="g1-arrow">▼</span></div>
     <div class="grammar-body" id="g1-body" style="display:none">
-      <p style="color:#4B5563;font-size:14px;line-height:1.6;margin-bottom:12px">"Ich hätte gerne…" means "I would like…" — polite and used in shops, cafés, and restaurants every day.</p>
-      <div class="grammar-ex"><span style="font-weight:700">Ich hätte gerne einen Kaffee.</span><span style="color:#9CA3AF;font-size:13px">I'd like a coffee.</span></div>
-      <div class="grammar-ex"><span style="font-weight:700">Ich hätte gerne das Hähnchen.</span><span style="color:#9CA3AF;font-size:13px">I'd like the chicken.</span></div>
-      <div class="grammar-tip" style="background:#CCFBF1;color:#0D9488;margin-top:12px;font-size:14px">💡 This works in almost any shop or restaurant. Learn it first!</div>
+      <p style="color:#4B5563;font-size:14px;line-height:1.6;margin-bottom:12px">"Ich hätte gerne…" = "I would like…" — used in shops, cafés, and restaurants every day.</p>
+      <div class="grammar-ex"><span style="font-weight:700;font-size:13px">Ich hätte gerne einen Kaffee.</span><button class="speak-btn" onclick="speak('Ich hätte gerne einen Kaffee.')">🔊</button></div>
+      <div class="grammar-ex"><span style="font-weight:700;font-size:13px">Ich hätte gerne das Hähnchen.</span><button class="speak-btn" onclick="speak('Ich hätte gerne das Hähnchen.')">🔊</button></div>
+      <div class="grammar-tip" style="background:#CCFBF1;color:#0D9488">💡 This works in almost any shop. Learn it first!</div>
     </div>
   </div>
 
   <div class="grammar-card">
-    <div class="grammar-header" onclick="toggleGrammar(2)">
-      <div style="font-weight:700">Asking Where: Wo ist…?</div>
-      <span id="g2-arrow">▼</span>
-    </div>
+    <div class="grammar-header" onclick="toggleGrammar(2)"><div style="font-weight:700">Asking Where: Wo ist…?</div><span id="g2-arrow">▼</span></div>
     <div class="grammar-body" id="g2-body" style="display:none">
-      <p style="color:#4B5563;font-size:14px;line-height:1.6;margin-bottom:12px">"Wo ist…?" means "Where is…?" — essential for navigating shops, offices, and streets.</p>
-      <div class="grammar-ex"><span style="font-weight:700">Wo ist die Toilette?</span><span style="color:#9CA3AF;font-size:13px">Where is the toilet?</span></div>
-      <div class="grammar-ex"><span style="font-weight:700">Wo ist der Bahnhof?</span><span style="color:#9CA3AF;font-size:13px">Where is the station?</span></div>
-      <div class="grammar-ex"><span style="font-weight:700">Wo ist das Rathaus?</span><span style="color:#9CA3AF;font-size:13px">Where is the town hall?</span></div>
-      <div class="grammar-tip" style="background:#FEF3C7;color:#F59E0B;margin-top:12px;font-size:14px">💡 Notice the article changes: die Toilette → Wo ist <strong>die</strong> Toilette? The article stays the same here.</div>
+      <p style="color:#4B5563;font-size:14px;line-height:1.6;margin-bottom:12px">"Wo ist…?" = "Where is…?" — essential for navigating Germany.</p>
+      <div class="grammar-ex"><span style="font-weight:700">Wo ist die Toilette?</span><button class="speak-btn" onclick="speak('Wo ist die Toilette?')">🔊</button></div>
+      <div class="grammar-ex"><span style="font-weight:700">Wo ist der Bahnhof?</span><button class="speak-btn" onclick="speak('Wo ist der Bahnhof?')">🔊</button></div>
+      <div class="grammar-ex"><span style="font-weight:700">Wo ist das Rathaus?</span><button class="speak-btn" onclick="speak('Wo ist das Rathaus?')">🔊</button></div>
+      <div class="grammar-tip" style="background:#FEF3C7;color:#F59E0B">💡 The article stays the same after "Wo ist".</div>
     </div>
   </div>
 </div>
@@ -300,13 +298,42 @@ button{font-family:inherit;cursor:pointer}
   </div>
   <div class="card">
     <div style="font-weight:700;font-size:16px;margin-bottom:12px">🗺️ Module Progress</div>
-    <div style="margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:14px;margin-bottom:4px"><span>🚨 Survival German</span><span style="color:#4B5563">4/6</span></div><div class="progress-bar"><div class="progress-fill" style="width:67%;background:#F43F5E"></div></div></div>
-    <div style="margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:14px;margin-bottom:4px"><span>☕ Food & Drink</span><span style="color:#4B5563">2/5</span></div><div class="progress-bar"><div class="progress-fill" style="width:40%;background:#F59E0B"></div></div></div>
-    <div style="margin-bottom:4px"><div style="display:flex;justify-content:space-between;font-size:14px;margin-bottom:4px"><span>🛒 Shopping</span><span style="color:#4B5563">0/4</span></div><div class="progress-bar"><div class="progress-fill" style="width:0%;background:#0D9488"></div></div></div>
+    <div style="margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:14px;margin-bottom:4px"><span>🚨 Survival German</span><span>4/6</span></div><div class="progress-bar"><div class="progress-fill" style="width:67%;background:#F43F5E"></div></div></div>
+    <div style="margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:14px;margin-bottom:4px"><span>☕ Food & Drink</span><span>2/5</span></div><div class="progress-bar"><div class="progress-fill" style="width:40%;background:#F59E0B"></div></div></div>
+    <div><div style="display:flex;justify-content:space-between;font-size:14px;margin-bottom:4px"><span>🛒 Shopping</span><span>0/4</span></div><div class="progress-bar"><div class="progress-fill" style="width:0%;background:#0D9488"></div></div></div>
   </div>
 </div>
 
 <script>
+// ── TEXT-TO-SPEECH ENGINE ─────────────────────────────────────
+function speak(text, btnEl) {
+  if (!window.speechSynthesis) { alert("Sorry, your browser doesn't support voice."); return; }
+  window.speechSynthesis.cancel();
+  const utt = new SpeechSynthesisUtterance(text);
+  utt.lang = 'de-DE';
+  utt.rate = 0.85;
+  utt.pitch = 1;
+
+  // Try to pick a German voice
+  const voices = window.speechSynthesis.getVoices();
+  const deVoice = voices.find(v => v.lang.startsWith('de'));
+  if (deVoice) utt.voice = deVoice;
+
+  // Toast
+  const toast = document.getElementById('tts-toast');
+  toast.style.opacity = '1';
+  utt.onend = () => { toast.style.opacity = '0'; };
+  utt.onerror = () => { toast.style.opacity = '0'; };
+
+  window.speechSynthesis.speak(utt);
+}
+
+// Speak current flashcard German text
+function speakFC() {
+  const text = document.getElementById('fc-de').textContent;
+  speak(text);
+}
+
 // ── DATA ──────────────────────────────────────────────────────
 const MODULES = [
   {title:"Survival German",icon:"🚨",color:"#F43F5E",light:"#FFE4E6",lessons:6,done:4,level:"A1"},
@@ -345,46 +372,32 @@ const QUIZ = [
   {q:"Which article goes with 'Kaffee'?",opts:["die","das","der","keine"],ans:2},
 ];
 
-const LESSON_STEPS = [
-  {type:"intro"},
-  {type:"phrase"},
-  {type:"vocab"},
-  {type:"complete"},
-];
+const LESSON_STEPS = [{type:"intro"},{type:"phrase"},{type:"vocab"},{type:"complete"}];
 
 // ── STATE ─────────────────────────────────────────────────────
-let currentPage = "landing";
-let fcIdx = 0, fcFlipped = false;
-let dlgShown = 1;
-let lessonStep = 0;
-let quizIdx = 0, quizAnswered = false, quizScore = 0;
+let fcIdx=0, fcFlipped=false, dlgShown=1, lessonStep=0, quizIdx=0, quizAnswered=false, quizScore=0;
 
 // ── NAV ───────────────────────────────────────────────────────
 function go(page) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   const el = document.getElementById(page);
-  if (el) { el.classList.add('active'); el.scrollTop = 0; }
-  const nav = document.getElementById('nav');
-  if (page === 'landing') { nav.style.display = 'none'; }
-  else { nav.style.display = 'flex'; }
+  if (el) { el.classList.add('active'); }
+  document.getElementById('nav').style.display = page==='landing'?'none':'flex';
   ['home','modules','practice','progress'].forEach(n => document.getElementById('nav-'+n)?.classList.remove('active'));
-  const map = {dashboard:'home',modules:'modules',vocab:'practice',dialogue:'practice',grammar:'practice',quiz:'practice',progress:'progress',lesson:'modules'};
+  const map={dashboard:'home',modules:'modules',vocab:'practice',dialogue:'practice',grammar:'practice',quiz:'practice',progress:'progress',lesson:'modules'};
   if (map[page]) document.getElementById('nav-'+map[page])?.classList.add('active');
-  currentPage = page;
-  if (page === 'modules') buildModules();
-  if (page === 'lesson') buildLesson();
-  if (page === 'vocab') buildVocab();
-  if (page === 'dialogue') buildDialogue();
-  if (page === 'quiz') buildQuiz();
+  if (page==='modules') buildModules();
+  if (page==='lesson') buildLesson();
+  if (page==='vocab') buildVocab();
+  if (page==='dialogue') buildDialogue();
+  if (page==='quiz') buildQuiz();
   window.scrollTo(0,0);
 }
 
 // ── MODULES ───────────────────────────────────────────────────
 function buildModules() {
-  const el = document.getElementById('modules-list');
-  el.innerHTML = MODULES.map((m,i) => {
+  document.getElementById('modules-list').innerHTML = MODULES.map(m => {
     const pct = Math.round(m.done/m.lessons*100);
-    const status = m.done===0?'Start':m.done===m.lessons?'Done ✓':'In progress';
     return `<div class="card module-row" onclick="go('lesson')" style="cursor:pointer">
       <div class="mod-icon" style="background:${m.light}">${m.icon}</div>
       <div class="mod-info">
@@ -398,137 +411,132 @@ function buildModules() {
 }
 
 // ── LESSON ────────────────────────────────────────────────────
-function buildLesson() {
-  lessonStep = 0;
-  renderLesson();
-}
+function buildLesson() { lessonStep=0; renderLesson(); }
 function renderLesson() {
-  const dots = document.getElementById('lesson-dots');
-  dots.innerHTML = LESSON_STEPS.map((_,i) =>
-    `<div class="step-dot" style="background:${i<=lessonStep?'#0D9488':'#E5E7EB'}"></div>`
-  ).join('');
+  document.getElementById('lesson-dots').innerHTML = LESSON_STEPS.map((_,i)=>
+    `<div class="step-dot" style="background:${i<=lessonStep?'#0D9488':'#E5E7EB'}"></div>`).join('');
   const c = document.getElementById('lesson-content');
   const s = LESSON_STEPS[lessonStep];
-  if (s.type==='intro') c.innerHTML = `
+  if (s.type==='intro') c.innerHTML=`
     <div style="text-align:center;margin-bottom:20px"><div style="font-size:48px">🛒</div></div>
     <h2 style="font-weight:800;text-align:center;margin-bottom:8px">Supermarket Basics</h2>
-    <p style="color:#4B5563;text-align:center;margin-bottom:20px;line-height:1.6">Learn how to shop at German supermarkets — asking for items, quantities, and paying.</p>
+    <p style="color:#4B5563;text-align:center;margin-bottom:20px;line-height:1.6">Learn how to shop at German supermarkets.</p>
     <div style="background:#CCFBF1;border-radius:14px;padding:16px;margin-bottom:20px">
       <div style="font-weight:700;color:#0D9488;margin-bottom:8px">What you'll learn</div>
       ${["Ask for items and quantities","Understand prices","Use polite phrases at checkout","Key vocab: Kasse, Tüte, Quittung"].map(t=>`<div style="color:#1F2937;font-size:14px;margin-bottom:4px">✓ ${t}</div>`).join('')}
     </div>
     <button onclick="nextLesson()" class="next-btn">Start Lesson →</button>`;
-  else if (s.type==='phrase') c.innerHTML = `
+  else if (s.type==='phrase') c.innerHTML=`
     <span class="badge" style="background:#CCFBF1;color:#0D9488">Key Phrase</span>
-    <div class="phrase-box" style="background:#CCFBF1;margin:16px 0">
-      <div class="phrase-de" style="color:#0D9488">Wo ist die Käseabteilung?</div>
-      <div class="phrase-en" style="color:#4B5563">Where is the cheese section?</div>
+    <div style="background:#CCFBF1;border-radius:18px;padding:24px;text-align:center;margin:16px 0">
+      <div style="font-size:20px;font-weight:800;color:#0D9488;margin-bottom:6px">Wo ist die Käseabteilung?</div>
+      <div style="color:#4B5563;font-size:15px;margin-bottom:12px">Where is the cheese section?</div>
+      <button class="speak-btn" onclick="speak('Wo ist die Käseabteilung?')" style="background:rgba(13,148,136,.15);border-radius:12px;padding:8px 18px">🔊 <span style="font-size:13px;font-weight:700;color:#0D9488">Hear it in German</span></button>
     </div>
     <div class="card"><div style="font-weight:700;margin-bottom:8px">How to use it</div>
-    <p style="color:#4B5563;font-size:14px;line-height:1.6">Replace <strong>Käseabteilung</strong> with any section: <em>Brotabteilung</em> (bread), <em>Fleischabteilung</em> (meat), <em>Obstabteilung</em> (fruit). Germans appreciate the effort — even imperfect German gets a warm response!</p></div>
+    <p style="color:#4B5563;font-size:14px;line-height:1.6">Replace <strong>Käseabteilung</strong> with any section: Brotabteilung (bread), Fleischabteilung (meat). Germans appreciate the effort!</p></div>
     <button onclick="nextLesson()" class="next-btn">Continue →</button>`;
-  else if (s.type==='vocab') c.innerHTML = `
+  else if (s.type==='vocab') c.innerHTML=`
     <span class="badge" style="background:#FEF3C7;color:#F59E0B">Vocabulary</span>
-    <h3 style="font-weight:800;font-size:17px;margin:12px 0 16px">Key words for this lesson</h3>
-    ${[["die Kasse","checkout / till"],["die Tüte","bag"],["die Quittung","receipt"],["der Kassierer","cashier (male)"],["das Sonderangebot","special offer"]].map(([de,en])=>
-      `<div class="vocab-row"><span class="vocab-de">${de}</span><span class="vocab-en">${en}</span></div>`
+    <h3 style="font-weight:800;font-size:17px;margin:12px 0 16px">Tap 🔊 to hear each word</h3>
+    ${[["die Kasse","checkout"],["die Tüte","bag"],["die Quittung","receipt"],["der Kassierer","cashier"],["das Sonderangebot","special offer"]].map(([de,en])=>
+      `<div class="vocab-row"><span class="vocab-de">${de}</span><div style="display:flex;align-items:center;gap:8px"><span class="vocab-en">${en}</span><button class="speak-btn" onclick="speak('${de}')">🔊</button></div></div>`
     ).join('')}
     <button onclick="nextLesson()" class="next-btn" style="margin-top:20px">Continue →</button>`;
-  else if (s.type==='complete') c.innerHTML = `
-    <div class="complete-box">
+  else if (s.type==='complete') c.innerHTML=`
+    <div style="text-align:center;padding:20px 0">
       <div style="font-size:60px;margin-bottom:12px">🎉</div>
       <h2 style="font-weight:800;font-size:22px;margin-bottom:8px">Lesson Complete!</h2>
       <p style="color:#4B5563;margin-bottom:20px">Great work! You earned 30 XP.</p>
-      <div class="xp-badges">
-        <div class="xp-badge" style="background:#EDE9FE"><div style="font-size:24px">⚡</div><div class="xp-val" style="color:#7C3AED">30 XP</div></div>
-        <div class="xp-badge" style="background:#CCFBF1"><div style="font-size:24px">🎯</div><div class="xp-val" style="color:#0D9488">100%</div></div>
+      <div style="display:flex;justify-content:center;gap:18px;margin:20px 0">
+        <div style="background:#EDE9FE;border-radius:14px;padding:14px 20px;text-align:center"><div style="font-size:24px">⚡</div><div style="font-size:20px;font-weight:800;color:#7C3AED">30 XP</div></div>
+        <div style="background:#CCFBF1;border-radius:14px;padding:14px 20px;text-align:center"><div style="font-size:24px">🎯</div><div style="font-size:20px;font-weight:800;color:#0D9488">100%</div></div>
       </div>
       <button onclick="go('quiz')" class="next-btn">Take the Quiz →</button>
       <button onclick="go('dashboard')" style="background:#F3F4F6;color:#4B5563;font-weight:700;border:none;border-radius:14px;padding:14px;width:100%;margin-top:10px">Back to Home</button>
     </div>`;
 }
-function nextLesson() { if (lessonStep < LESSON_STEPS.length-1) { lessonStep++; renderLesson(); } }
+function nextLesson() { if (lessonStep<LESSON_STEPS.length-1){lessonStep++;renderLesson();} }
 
 // ── FLASHCARDS ────────────────────────────────────────────────
 function buildVocab() { fcIdx=0; fcFlipped=false; renderCard(); }
 function renderCard() {
-  const card = CARDS[fcIdx];
-  document.getElementById('fc-counter').textContent = `${fcIdx+1} / ${CARDS.length}`;
-  document.getElementById('fc-progress').style.width = `${((fcIdx+1)/CARDS.length)*100}%`;
-  const fc = document.getElementById('flashcard');
-  document.getElementById('fc-de').textContent = card.de;
-  document.getElementById('fc-hint').style.display = fcFlipped?'none':'block';
-  document.getElementById('fc-en').style.display = fcFlipped?'block':'none';
-  document.getElementById('fc-ex').style.display = fcFlipped?'block':'none';
-  document.getElementById('fc-en').textContent = card.en;
-  document.getElementById('fc-ex').textContent = card.ex;
-  fc.style.background = fcFlipped ? '#FEF3C7' : 'linear-gradient(135deg,#F59E0B,#EF4444)';
-  document.getElementById('fc-de').style.color = fcFlipped ? '#F59E0B' : '#fff';
-  document.getElementById('fc-prev').disabled = fcIdx===0;
-  document.getElementById('fc-next').disabled = fcIdx===CARDS.length-1;
+  const card=CARDS[fcIdx];
+  document.getElementById('fc-counter').textContent=`${fcIdx+1} / ${CARDS.length}`;
+  document.getElementById('fc-progress').style.width=`${((fcIdx+1)/CARDS.length)*100}%`;
+  const fc=document.getElementById('flashcard');
+  document.getElementById('fc-de').textContent=card.de;
+  document.getElementById('fc-de').style.color=fcFlipped?'#F59E0B':'#fff';
+  document.getElementById('fc-hint').style.display=fcFlipped?'none':'block';
+  document.getElementById('fc-en').style.display=fcFlipped?'block':'none';
+  document.getElementById('fc-ex').style.display=fcFlipped?'block':'none';
+  document.getElementById('fc-en').textContent=card.en;
+  document.getElementById('fc-ex').textContent=card.ex;
+  fc.style.background=fcFlipped?'#FEF3C7':'linear-gradient(135deg,#F59E0B,#EF4444)';
+  document.getElementById('fc-prev').disabled=fcIdx===0;
+  document.getElementById('fc-next').disabled=fcIdx===CARDS.length-1;
 }
-function flipCard() { fcFlipped = !fcFlipped; renderCard(); }
-function fcMove(dir) { fcIdx = Math.max(0,Math.min(CARDS.length-1,fcIdx+dir)); fcFlipped=false; renderCard(); }
+function flipCard(){fcFlipped=!fcFlipped;renderCard();}
+function fcMove(dir){fcIdx=Math.max(0,Math.min(CARDS.length-1,fcIdx+dir));fcFlipped=false;renderCard();}
 
 // ── DIALOGUE ──────────────────────────────────────────────────
-function buildDialogue() { dlgShown=1; renderDialogue(); }
-function renderDialogue() {
-  const el = document.getElementById('dialogue-lines');
-  el.innerHTML = DIALOGUE.slice(0,dlgShown).map(l => `
+function buildDialogue(){dlgShown=1;renderDialogue();}
+function renderDialogue(){
+  document.getElementById('dialogue-lines').innerHTML=DIALOGUE.slice(0,dlgShown).map(l=>`
     <div class="chat-line">
       <div class="chat-avatar" style="background:${l.bg}">${l.emoji}</div>
       <div style="flex:1">
         <div class="chat-name">${l.who}</div>
         <div class="chat-bubble" style="background:${l.bg}">
-          <div class="chat-de">${l.de}</div>
+          <div class="chat-de">${l.de} <button class="speak-btn" onclick="speak('${l.de.replace(/'/g,"\\'")}')">🔊</button></div>
           <div class="chat-en">${l.en}</div>
         </div>
       </div>
     </div>`).join('');
-  const btn = document.getElementById('dlg-btn');
-  if (dlgShown >= DIALOGUE.length) { btn.style.display='none'; }
-  else { btn.style.display='block'; }
+  document.getElementById('dlg-btn').style.display=dlgShown>=DIALOGUE.length?'none':'block';
 }
-function dlgNext() { if (dlgShown < DIALOGUE.length) { dlgShown++; renderDialogue(); } }
+function dlgNext(){if(dlgShown<DIALOGUE.length){dlgShown++;renderDialogue();}}
 
 // ── GRAMMAR ───────────────────────────────────────────────────
-function toggleGrammar(i) {
-  const body = document.getElementById(`g${i}-body`);
-  const arrow = document.getElementById(`g${i}-arrow`);
-  const open = body.style.display !== 'none';
-  body.style.display = open ? 'none' : 'block';
-  arrow.textContent = open ? '▼' : '▲';
+function toggleGrammar(i){
+  const body=document.getElementById(`g${i}-body`);
+  const arrow=document.getElementById(`g${i}-arrow`);
+  const open=body.style.display!=='none';
+  body.style.display=open?'none':'block';
+  arrow.textContent=open?'▼':'▲';
 }
 
 // ── QUIZ ──────────────────────────────────────────────────────
-function buildQuiz() { quizIdx=0; quizAnswered=false; quizScore=0; renderQuiz(); }
-function renderQuiz() {
-  if (quizIdx >= QUIZ.length) { showQuizResult(); return; }
-  const q = QUIZ[quizIdx];
-  document.getElementById('quiz-counter').textContent = `${quizIdx+1} / ${QUIZ.length}`;
-  document.getElementById('quiz-progress').style.width = `${((quizIdx+1)/QUIZ.length)*100}%`;
-  document.getElementById('quiz-content').innerHTML = `
+function buildQuiz(){quizIdx=0;quizAnswered=false;quizScore=0;renderQuiz();}
+function renderQuiz(){
+  if(quizIdx>=QUIZ.length){showQuizResult();return;}
+  const q=QUIZ[quizIdx];
+  document.getElementById('quiz-counter').textContent=`${quizIdx+1} / ${QUIZ.length}`;
+  document.getElementById('quiz-progress').style.width=`${((quizIdx+1)/QUIZ.length)*100}%`;
+  document.getElementById('quiz-content').innerHTML=`
     <div class="quiz-q">${q.q}</div>
-    ${q.opts.map((opt,i) => `<button class="quiz-opt" id="qopt-${i}" onclick="answerQuiz(${i})">${opt}</button>`).join('')}`;
-  quizAnswered = false;
+    ${q.opts.map((opt,i)=>`<button class="quiz-opt" id="qopt-${i}" onclick="answerQuiz(${i})">${opt}</button>`).join('')}`;
+  quizAnswered=false;
 }
-function answerQuiz(i) {
-  if (quizAnswered) return;
-  quizAnswered = true;
-  const q = QUIZ[quizIdx];
-  document.querySelectorAll('.quiz-opt').forEach((b,j) => {
-    if (j===q.ans) b.classList.add('correct');
-    else if (j===i && i!==q.ans) b.classList.add('wrong');
-    b.disabled = true;
+function answerQuiz(i){
+  if(quizAnswered)return;
+  quizAnswered=true;
+  const q=QUIZ[quizIdx];
+  // Speak the correct answer
+  speak(q.opts[q.ans]);
+  document.querySelectorAll('.quiz-opt').forEach((b,j)=>{
+    if(j===q.ans)b.classList.add('correct');
+    else if(j===i&&i!==q.ans)b.classList.add('wrong');
+    b.disabled=true;
   });
-  if (i===q.ans) quizScore++;
-  setTimeout(() => { quizIdx++; renderQuiz(); }, 1200);
+  if(i===q.ans)quizScore++;
+  setTimeout(()=>{quizIdx++;renderQuiz();},1400);
 }
-function showQuizResult() {
-  const pct = Math.round(quizScore/QUIZ.length*100);
-  const msg = pct===100?'Perfect! 🎉':pct>=75?'Great work! 🌟':pct>=50?'Good effort! 💪':'Keep practising! 📖';
-  document.getElementById('quiz-content').innerHTML = `
-    <div class="quiz-result">
+function showQuizResult(){
+  const pct=Math.round(quizScore/QUIZ.length*100);
+  const msg=pct===100?'Perfect! 🎉':pct>=75?'Great work! 🌟':pct>=50?'Good effort! 💪':'Keep practising! 📖';
+  document.getElementById('quiz-content').innerHTML=`
+    <div style="text-align:center;padding:20px 0">
       <div style="font-size:60px;margin-bottom:12px">${pct===100?'🏆':pct>=75?'🌟':'📖'}</div>
       <h2 style="font-weight:800;font-size:22px;margin-bottom:8px">${msg}</h2>
       <p style="color:#4B5563;margin-bottom:20px">You got ${quizScore} out of ${QUIZ.length} correct.</p>
@@ -542,6 +550,9 @@ function showQuizResult() {
   document.getElementById('quiz-counter').textContent='Done!';
   document.getElementById('quiz-progress').style.width='100%';
 }
+
+// Load voices early on mobile
+window.speechSynthesis.onvoiceschanged = () => { window.speechSynthesis.getVoices(); };
 </script>
 </body>
 </html>
